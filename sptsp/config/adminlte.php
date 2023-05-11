@@ -314,8 +314,11 @@ return [
             'icon'        => 'fa fa-check',
         ],
 
-        
-        ['header' => 'PENDAFTARAN'],
+        [
+            'text'        => 'Prasyarat',
+            'url'         => 'prasyarat',
+            'icon'        => 'fa fa-book',
+        ],
 
         [
             'text'        => 'Perkara',
@@ -325,11 +328,6 @@ return [
         [
             'text'        => 'Biaya Pendaftaran',
             'url'         => 'pendaftaran',
-            'icon'        => 'fa fa-book',
-        ],
-        [
-            'text'        => 'Prasyarat',
-            'url'         => 'prasyarat',
             'icon'        => 'fa fa-book',
         ],
 
@@ -347,14 +345,20 @@ return [
             'icon'        => 'fa fa-database',
         ],
 
-
-
         ['header' => 'PENGADUAN'],
         [
             'text'        => 'Data Pegawai',
             'url'         => 'pengaduan/pegawai',
             'icon'        => 'fa fa-users',
         ],
+
+        [
+            'text'        => 'Data Pengaduan',
+            'url'         => 'pengaduan',
+            'icon'        => 'fa fa-bug',
+        ],
+
+
         ['header' => 'KASIR'],
         [
             'text'        => 'Transaksi Uang',
