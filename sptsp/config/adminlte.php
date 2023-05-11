@@ -302,75 +302,75 @@ return [
             'topnav_right' => true,
         ],
 
-        ['header' => 'DATA MASTER'],
-        [
-            'text'        => 'Dashboard',
-            'url'         => 'home',
-            'icon'        => 'fa fa-home',
-        ],
-        [
-            'text'        => 'Jenis Perkara',
-            'url'         => 'jenis_perkara',
-            'icon'        => 'fa fa-check',
-        ],
+        // ['header' => 'DATA MASTER'],
+        // [
+        //     'text'        => 'Dashboard',
+        //     'url'         => 'home',
+        //     'icon'        => 'fa fa-home',
+        // ],
+        // [
+        //     'text'        => 'Jenis Perkara',
+        //     'url'         => 'jenis_perkara',
+        //     'icon'        => 'fa fa-check',
+        // ],
 
-        [
-            'text'        => 'Prasyarat',
-            'url'         => 'prasyarat',
-            'icon'        => 'fa fa-book',
-        ],
+        // [
+        //     'text'        => 'Prasyarat',
+        //     'url'         => 'prasyarat',
+        //     'icon'        => 'fa fa-book',
+        // ],
 
-        [
-            'text'        => 'Perkara',
-            'url'         => 'perkara',
-            'icon'        => 'far fa-copy',
-        ],
-        [
-            'text'        => 'Biaya Pendaftaran',
-            'url'         => 'pendaftaran',
-            'icon'        => 'fa fa-book',
-        ],
-
-
-        ['header' => 'PERSIDANGAN'],
-        [
-            'text'        => 'Antrian Sidang',
-            'url'         => 'antrian',
-            'icon'        => 'far fa-calendar',
-        ],
-
-        [
-            'text'        => 'Data Sidang',
-            'url'         => 'sidang',
-            'icon'        => 'fa fa-database',
-        ],
-
-        ['header' => 'PENGADUAN'],
-        [
-            'text'        => 'Data Pegawai',
-            'url'         => 'pengaduan/pegawai',
-            'icon'        => 'fa fa-users',
-        ],
-
-        [
-            'text'        => 'Data Pengaduan',
-            'url'         => 'pengaduan',
-            'icon'        => 'fa fa-bug',
-        ],
+        // [
+        //     'text'        => 'Perkara',
+        //     'url'         => 'perkara',
+        //     'icon'        => 'far fa-copy',
+        // ],
+        // [
+        //     'text'        => 'Biaya Pendaftaran',
+        //     'url'         => 'pendaftaran',
+        //     'icon'        => 'fa fa-book',
+        // ],
 
 
-        ['header' => 'KASIR'],
-        [
-            'text'        => 'Transaksi Uang',
-            'url'         => 'kasir',
-            'icon'        => 'fa fa-database',
-        ],
-        ['header' => 'PRODUK'],
-        [
-            'text'        => 'Daftar Produk',
-            'url'         => 'produk',
-            'icon'        => 'fa fa-users',
-        ],
+        // ['header' => 'PERSIDANGAN'],
+        // [
+        //     'text'        => 'Antrian Sidang',
+        //     'url'         => 'antrian',
+        //     'icon'        => 'far fa-calendar',
+        // ],
+
+        // [
+        //     'text'        => 'Data Sidang',
+        //     'url'         => 'sidang',
+        //     'icon'        => 'fa fa-database',
+        // ],
+
+        // ['header' => 'PENGADUAN'],
+        // [
+        //     'text'        => 'Data Pegawai',
+        //     'url'         => 'pengaduan/pegawai',
+        //     'icon'        => 'fa fa-users',
+        // ],
+
+        // [
+        //     'text'        => 'Data Pengaduan',
+        //     'url'         => 'pengaduan',
+        //     'icon'        => 'fa fa-bug',
+        // ],
+
+
+        // ['header' => 'KASIR'],
+        // [
+        //     'text'        => 'Transaksi Uang',
+        //     'url'         => 'kasir',
+        //     'icon'        => 'fa fa-database',
+        // ],
+        // ['header' => 'PRODUK'],
+        // [
+        //     'text'        => 'Daftar Produk',
+        //     'url'         => 'produk',
+        //     'icon'        => 'fa fa-users',
+        // ],
     ],
 
     /*
