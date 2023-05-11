@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'title' => 'PTSP Pengadilan Agama',
+    'title' => 'Pengadilan Agama Polewali kelas IB',
     'title_prefix' => '.::',
     'title_postfix' => '::.',
 
@@ -64,12 +64,12 @@ return [
     |
     */
 
-    'logo' => '<b>PTSP</b>Pengadilan Agama',
+    'logo' => '<b>Pengadilan Agama Polewali</b> kelas IB',
     'logo_img' => 'logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Pengadilan Agama Polewali kelas IB',
 
     /*
     |--------------------------------------------------------------------------

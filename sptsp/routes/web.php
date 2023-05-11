@@ -8,6 +8,7 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PerkaraController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\SaksiController;
 use App\Http\Controllers\SidangController;
 use App\Http\Controllers\SyaratController;
 use Illuminate\Support\Facades\Auth;
@@ -81,4 +82,5 @@ Route::group(['middleware' => ['auth', 'cekRole:0,5']], function() {
     Route::get('/antrian/isi-sidang/{id}', [AntrianController::class, 'isi_data_sidang'])->name('antrian.isi_sidang');
     Route::post('/antrian/post-sidang', [AntrianController::class, 'post_isi_sidang'])->name('antrian.post_isi_sidang');
     Route::get('/antrian/update-status/{id}/{status}', [AntrianController::class, 'update_status'])->name('antrian.update_status');
+    Route::get('/sidang/saksi', [SaksiController::class, 'index'])->name('saksi.index');
 });

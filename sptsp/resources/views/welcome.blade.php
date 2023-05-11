@@ -859,7 +859,7 @@
 
             <br />
             <div class="flex justify-center items-center mt-12">
-                <h1 class="text-center text-xl">Selamat datang di Sistem Pelayanan Satu Pintu<br />Pengadilan Agama</h1>
+                <h1 class="text-center text-xl">Selamat datang di Sistem Pelayanan Satu Pintu<br />Pengadilan Agama Polewali Kelas IB</h1>
             </div>
             <br />
 

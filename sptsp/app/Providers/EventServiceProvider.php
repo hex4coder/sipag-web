@@ -73,6 +73,12 @@ class EventServiceProvider extends ServiceProvider
                     'url'         => 'sidang',
                     'icon'        => 'fa fa-database',
                 ],
+
+                [
+                    'text'        => 'Data Saksi',
+                    'url'         => 'sidang/saksi',
+                    'icon'        => 'fa fa-users',
+                ],
             ];
             $pengaduanMenu = [
                 [
