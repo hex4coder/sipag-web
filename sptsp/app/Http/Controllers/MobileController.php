@@ -398,4 +398,29 @@ class MobileController extends Controller
             'data' => $dataPrasyarat
         ];
     }
+
+
+
+    /**
+     * Dapatkan detail biaya berdasarkan id perkara
+     */
+    public function get_detail_biaya($perkaraid)
+    {
+        $data = Perkara::where('id', $perkaraid)->with(['transaksi_pembayaran'])->orderBy(
+            'created_at',
+            'desc'
+        )->get();
+
+        if (!$data) {
+            return [
+                'status' => 'error',
+                'message' => 'Kesalahan dalam mengambil data detail pembayaran.'
+            ];
+        }
+
+        return [
+            'status' =>  'success',
+            'data' => $data,
+        ];
+    }
 }
