@@ -6,6 +6,7 @@ use App\Models\Antrian;
 use App\Models\BiayaPendaftaran;
 use App\Models\JenisPerkara;
 use App\Models\Notification;
+use App\Models\Pembayaran;
 use App\Models\Perkara;
 use App\Models\Prasyarat;
 use App\Models\Saksi;
@@ -406,10 +407,7 @@ class MobileController extends Controller
      */
     public function get_detail_biaya($perkaraid)
     {
-        $data = Perkara::where('id', $perkaraid)->with(['transaksi_pembayaran'])->orderBy(
-            'created_at',
-            'desc'
-        )->get();
+        $data = Pembayaran::where('perkara_id', $perkaraid)->get();
 
         if (!$data) {
             return [

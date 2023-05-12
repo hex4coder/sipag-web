@@ -91,10 +91,9 @@
             @endphp
 
             {{-- Minimal example / fill data using the component slot --}}
-            <x-adminlte-datatable id="table1" :heads="$heads">
+            <x-adminlte-datatable id="table1" :heads="$heads" hoverable striped>
                 @foreach ($config['data'] as $row)
                     <tr>
-
                         @foreach ($row as $cell)
                             <td>{!! $cell !!}</td>
                             {{-- <td>{{ $cell }}</td> --}}
@@ -102,10 +101,6 @@
                     </tr>
                 @endforeach
             </x-adminlte-datatable>
-
-            {{-- Compressed with style options / fill data using the plugin config --}}
-            <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark" :config="$config" striped hoverable
-                bordered compressed />
         </div>
     </div>
 @stop
