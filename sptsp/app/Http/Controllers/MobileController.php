@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Antrian;
 use App\Models\BiayaPendaftaran;
+use App\Models\JenisPerkara;
 use App\Models\Notification;
 use App\Models\Perkara;
 use App\Models\Prasyarat;
@@ -184,28 +185,28 @@ class MobileController extends Controller
     /**
      * Ambil notifikasi
      */
-    public function get_notif(Request $request) {
+    public function get_notif(Request $request)
+    {
         $no_perkara = $request->no_perkara;
-        $perkara  =Perkara::where('nomor_perkara', $no_perkara)->first();
-        if($perkara) {
+        $perkara  = Perkara::where('nomor_perkara', $no_perkara)->first();
+        if ($perkara) {
             $perkaraId = $perkara->id;
             $dataNotif = Notification::whereDate('created_at', Carbon::today())
-            ->where('perkara_id', $perkaraId)->orderBy('created_at', 'DESC')
-            ->get();
+                ->where('perkara_id', $perkaraId)->orderBy('created_at', 'DESC')
+                ->get();
 
-            if(count($dataNotif) > 0) {
+            if (count($dataNotif) > 0) {
                 return [
-                    'status'=>'success',
-                    'message'=>$dataNotif,
+                    'status' => 'success',
+                    'message' => $dataNotif,
                 ];
             } else {
                 return [
                     'status' => 'error',
                     'message' => 'Belum ada data',
                     'code'  => 'no-data',
-                ];    
+                ];
             }
-
         } else {
             return [
                 'status' => 'error',
@@ -219,10 +220,11 @@ class MobileController extends Controller
     /**
      * Ambil nomor antrian hari ini
      */
-    public function cekNomorAntrian() {
+    public function cekNomorAntrian()
+    {
         $dataAntrian = Antrian::whereDate('created_at', Carbon::today())->orderBy('nomor_antrian', 'DESC')->get();
         $jumlahData = count($dataAntrian);
-        if($jumlahData < 1) {
+        if ($jumlahData < 1) {
             return '001';
         } else {
             $antrianTerakhir = $dataAntrian[0];
@@ -249,7 +251,7 @@ class MobileController extends Controller
         $perkara = Perkara::where('nomor_perkara', $no_perkara)->first();
         if ($perkara) {
             $cekStatus = $this->cek_status($request);
-            if($cekStatus == -1) {
+            if ($cekStatus == -1) {
                 // jika belum ada  baru buat
                 $nomorAntrian =  $this->cekNomorAntrian();
                 $antrianBaru = Antrian::create([
@@ -271,7 +273,7 @@ class MobileController extends Controller
                 ];
             } else {
                 $antrians = Antrian::whereDate('created_at', Carbon::today())->where('perkara_id', $perkara->id)->get();
-                if(count($antrians) > 0) {
+                if (count($antrians) > 0) {
                     $antrian = $antrians[0];
                     return [
                         'status' => 'warning',
@@ -281,7 +283,6 @@ class MobileController extends Controller
                     ];
                 }
             }
-
         } else {
             return [
                 'status' => 'error',
@@ -343,9 +344,10 @@ class MobileController extends Controller
     /**
      * Mengambil daftar prasyarat berdasarkan id perkara
      */
-    public function get_prasyarat($perkaraid) {
-        $p  =Perkara::find($perkaraid);
-        if(!$p) {
+    public function get_prasyarat($perkaraid)
+    {
+        $p  = Perkara::find($perkaraid);
+        if (!$p) {
             return [
                 'status' => 'error',
                 'message' => 'Data perkara tidak ditemukan!',
@@ -355,7 +357,7 @@ class MobileController extends Controller
             $syarats = Prasyarat::where('jenis_perkara_id', $jenis_id)->get();
             return [
                 'status' => 'success',
-                'message' => 'Sukses mencari data syarat dengan id perkara '. $perkaraid,
+                'message' => 'Sukses mencari data syarat dengan id perkara ' . $perkaraid,
                 'data' => $syarats,
             ];
         }
@@ -365,12 +367,35 @@ class MobileController extends Controller
     /**
      * Mendapatkan daftar biaya pendaftaran
      */
-    public function get_biaya() {
+    public function get_biaya()
+    {
         $data = BiayaPendaftaran::orderBy('id')->get(['kecamatan', 'desa', 'biaya', 'id']);
         return [
             'status' => 'success',
             'message' => 'Data biaya berhasil diload',
             'data' => $data,
+        ];
+    }
+
+
+
+    /**
+     * Dapatkan daftar prasyarat perkara
+     */
+    public function get_all_prasyarat()
+    {
+        $dataPrasyarat = JenisPerkara::with('prasyarat')->get();
+
+        if (!$dataPrasyarat) {
+            return [
+                'status' => 'error',
+                'message' => 'Gagal mengambil semua data prasyarat'
+            ];
+        }
+
+        return [
+            'status' => 'success',
+            'data' => $dataPrasyarat
         ];
     }
 }

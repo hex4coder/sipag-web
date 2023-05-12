@@ -30,4 +30,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/get-syarat/{perkaraid}', [MobileController::class, 'get_prasyarat'])->name('mobile.syarat');
 Route::get('/get-biaya', [MobileController::class, 'get_biaya'])->name('mobile.get_biaya');
-
+Route::get('/get-all-prasyarat', [MobileController::class, 'get_all_prasyarat'])->name('mobile.all_prasyarat');
