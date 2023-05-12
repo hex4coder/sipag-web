@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('sidang_ke');
             $table->string('nomor_antrian')->default('001');
             $table->string('agenda');
-            $table->string('ruang_sidang');
+            $table->enum('ruang_sidang', [
+                'Ruang Sidang 1',
+                'Ruang Sidang 2'
+            ])->default('Ruang Sidang 1');
             $table->string('km_pp_jsp');
             $table->enum('status', [
                 0, // baru
@@ -28,7 +31,7 @@ return new class extends Migration
                 4, // selesai sidang
                 5, // pass lewat
             ])->default(0);
-            
+
             $table->timestamps();
         });
     }
