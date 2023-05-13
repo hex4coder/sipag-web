@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('nomor_antrian')->default('001');
             $table->string('agenda');
             $table->enum('ruang_sidang', [
+                '-',
                 'Ruang Sidang 1',
                 'Ruang Sidang 2'
-            ])->default('Ruang Sidang 1');
+            ])->default('-');
             $table->string('km_pp_jsp');
             $table->enum('status', [
                 0, // baru
