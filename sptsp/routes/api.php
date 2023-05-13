@@ -32,3 +32,5 @@ Route::get('/get-syarat/{perkaraid}', [MobileController::class, 'get_prasyarat']
 Route::get('/get-biaya', [MobileController::class, 'get_biaya'])->name('mobile.get_biaya');
 Route::get('/get-all-prasyarat', [MobileController::class, 'get_all_prasyarat'])->name('mobile.all_prasyarat');
 Route::get('/get-detail-biaya/{perkaraid}', [MobileController::class, 'get_detail_biaya'])->name('mobile.get_detail_biaya');
+Route::get('/get-list-antrian', [MobileController::class, 'get_list_antrian'])->name('mobile.get_list_antrian');
+Route::get('/cek-data-perkara/{$perkaraid}', [MobileController::class, 'cek_data_perkara'])->name('mobile.cek_data_perkara');

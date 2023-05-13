@@ -163,7 +163,7 @@
                         <td>Ruang Sidang</td>
                         <td>:</td>
                         <td>
-                            <x-adminlte-select name="ruang_sidang" label="Sidang Ke" data-placeholder="Sidang Ke"
+                            <x-adminlte-select name="ruang_sidang" label="Ruang Sidang" data-placeholder="Sidang Ke"
                                 value='{{ $antrian->ruang_sidang }}'>
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text bg-gradient-info">

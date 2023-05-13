@@ -112,6 +112,7 @@ class MobileController extends Controller
         $kab = $request->kab;
         $jk = $request->jk;
         $pekerjaan = $request->pekerjaan;
+        $pendidikan = $request->pendidikan;
         $status_kawin = $request->status_kawin;
         $berkebutuhan_khusus = $request->berkebutuhan_khusus;
         $hubungan = $request->hubungan;
@@ -141,6 +142,7 @@ class MobileController extends Controller
                     'kab' => $kab,
                     'jk' => $jk,
                     'pekerjaan' => $pekerjaan,
+                    'pendidikan' => $pendidikan,
                     'status_kawin' => $status_kawin,
                     'berkebutuhan_khusus' => $berkebutuhan_khusus,
                     'hubungan' => $hubungan,
@@ -420,5 +422,46 @@ class MobileController extends Controller
             'status' =>  'success',
             'data' => $data,
         ];
+    }
+
+
+
+    /**
+     * Dapatkan daftar antrian hari ini
+     */
+    public function get_list_antrian()
+    {
+        $data = Antrian::orderBy('status', 'asc')->get();
+        if (!$data) {
+            return [
+                'status' => 'error',
+                'message' => 'Data antrian belum ada'
+            ];
+        } else {
+            return [
+                'status' => 'success',
+                'data' => $data,
+            ];
+        }
+    }
+
+
+    /**
+     * Cek new data
+     */
+    public function cek_data_perkara($perkaraid)
+    {
+        $data = Perkara::find($perkaraid);
+        if (!$data) {
+            return [
+                'status' => 'error',
+                'message' => 'Tidak ada data yang kami temukan'
+            ];
+        } else {
+            return [
+                'status' => 'success',
+                'data' => $data,
+            ];
+        }
     }
 }

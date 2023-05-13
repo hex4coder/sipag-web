@@ -20,11 +20,13 @@ class Antrian extends Model
         'status',
     ];
 
-    public function perkara(): BelongsTo {
+    public function perkara(): BelongsTo
+    {
         return $this->belongsTo(Perkara::class);
     }
 
-    public function strStatus() {
+    public function strStatus()
+    {
         $listStatus = [
             'Baru',
             'Diterima',
@@ -33,6 +35,11 @@ class Antrian extends Model
             'Selesai Sidang',
             'Pass / Lewat',
         ];
-        return $listStatus[$this->status];
+        $str = $listStatus[$this->status];
+        if (!$str) {
+            return '';
+        } else {
+            return $str;
+        }
     }
 }

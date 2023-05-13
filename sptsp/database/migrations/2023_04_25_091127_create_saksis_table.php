@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('kab');
             $table->enum('jk', ['lk', 'pr'])->default('lk');
             $table->string('pekerjaan');
+            $table->string('pendidikan');
             $table->string('status_kawin');
             $table->enum('berkebutuhan_khusus', ['ya', 'tidak'])->default('tidak');
             $table->string('hubungan'); // hubungan saksi dengan pihak 1

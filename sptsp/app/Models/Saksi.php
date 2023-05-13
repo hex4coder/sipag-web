@@ -13,7 +13,7 @@ class Saksi extends Model
     protected $fillable = [
         'perkara_id',
         'saksi_ke',
-        'nama', 
+        'nama',
         'bin',
         'tempat_lahir',
         'tanggal_lahir',
@@ -24,6 +24,7 @@ class Saksi extends Model
         'kab',
         'jk',
         'pekerjaan',
+        'pendidikan',
         'status_kawin',
         'berkebutuhan_khusus',
         'hubungan',
