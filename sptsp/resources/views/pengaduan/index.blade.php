@@ -39,11 +39,10 @@
                         <tbody>
                             @foreach ($listaduan as $aduan)
                                 <tr>
-                                    <td>{{ $aduan->perkara->nomor_perkara }}</td>
-                                    <td>{{ $aduan->perkara->pihak1 }}</td>
-                                    <td>aduan ke {{ $aduan->aduan_ke }}</td>
-                                    <td>{{ $aduan->nama }} Bin/Binti {{ $aduan->bin }}</td>
-
+                                    <td>{{ $aduan->pegawai->nama }}</td>
+                                    <td>{{ $aduan->isi }}</td>
+                                    <td>{{ $aduan->created_at }}</td>
+                                    <td>{{ $aduan->bukti }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -6,6 +6,7 @@ use App\Models\Antrian;
 use App\Models\BiayaPendaftaran;
 use App\Models\JenisPerkara;
 use App\Models\Notification;
+use App\Models\Pegawai;
 use App\Models\Pembayaran;
 use App\Models\Perkara;
 use App\Models\Prasyarat;
@@ -15,6 +16,61 @@ use Illuminate\Http\Request;
 
 class MobileController extends Controller
 {
+    /**
+     * Ambil data pegawai
+     */
+    public function get_all_pegawai()
+    {
+        $pegawais = Pegawai::all();
+
+        if (!$pegawais) {
+            return [
+                'status' => 'error',
+                'message' => 'Gagal mengambil data pegawai'
+            ];
+        }
+
+        return [
+            'status' => 'success',
+            'data' => $pegawais
+        ];
+    }
+
+    /**
+     * Post data pengaduan
+     */
+    public function post_pengaduan(Request $request)
+    {
+        $isi = $request->isi;
+        $pegawai_id = $request->pegawai_id;
+        $bukti = $request->file('bukti');
+        $extensiFile = $bukti->getClientOriginalExtension();
+        $namaBuktiFile = time() . '.' . $extensiFile;
+
+        $filebukti = $bukti->storeAs('public/bukti_pengaduan', $namaBuktiFile);
+
+
+        $p = Pegawai::create(
+            [
+                'isi' => $isi,
+                'bukti' => $filebukti,
+                'pegawai_id' => $pegawai_id,
+            ]
+        );
+
+        if ($p) {
+            return [
+                'status' => 'success',
+                'message' => 'Pengaduan anda berhasil diproses'
+            ];
+        } else {
+            return [
+                'status' => 'error',
+                'message' => 'Gagal mengirim data pengaduan'
+            ];
+        }
+    }
+
 
     /**
      * Fungsi untuk cek koneksi pada mobile

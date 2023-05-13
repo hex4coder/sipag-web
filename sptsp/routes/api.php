@@ -35,3 +35,7 @@ Route::get('/get-detail-biaya/{perkaraid}', [MobileController::class, 'get_detai
 Route::get('/get-list-antrian', [MobileController::class, 'get_list_antrian'])->name('mobile.get_list_antrian');
 Route::get('/cek-data-perkara/{perkaraid}', [MobileController::class, 'cek_data_perkara'])->name('mobile.cek_data_perkara');
 Route::get('/get-data-antrian/{antrianid}', [MobileController::class, 'get_data_antrian'])->name('mobile.cek_data_perkara');
+
+// Keperluan data pengaduan
+Route::get('/get-all-pegawai', [MobileController::class, 'get_all_pegawai'])->name('mobile.get_all_pegawai');
+Route::post('/post-pengaduan', [MobileController::class, 'post_pengaduan'])->name('mobile.post_pengaduan');
