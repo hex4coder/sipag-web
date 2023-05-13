@@ -83,4 +83,5 @@ Route::group(['middleware' => ['auth', 'cekRole:0,5']], function () {
     Route::get('/antrian/update-status/{id}/{status}', [AntrianController::class, 'update_status'])->name('antrian.update_status');
     Route::get('/sidang/saksi', [SaksiController::class, 'index'])->name('saksi.index');
     Route::get('/sidang/saksi/{id}', [SaksiController::class, 'detail'])->name('saksi.detail_saksi');
+    Route::get('/sidang/saksi-cetak', [SaksiController::class, 'cetak'])->name('saksi.cetak');
 });

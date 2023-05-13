@@ -13,7 +13,7 @@
         @csrf
         <div class="card p-2">
             <div class="card-header">
-                <a href="{{ route('antrian.detail', ['id' => $antrian->id]) }}" class="btn btn-outline-primary">
+                <a href="{{ redirect()->back()->getTargetUrl() }}" class="btn btn-outline-primary">
                     <i class="fa fa-arrow-left"></i> Kembali
                 </a>
             </div>

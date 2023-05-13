@@ -16,7 +16,9 @@
                 {{-- jika ada data tampilkan tombol print --}}
                 @if (count($listsaksi) > 0)
                     <div class="float-right">
-                        <a href="#" class="btn btn-primary"><i class="fa fa-print"></i> Cetak Data</a>
+                        <a target="_blank" href="{{ route('saksi.cetak') }}" class="btn btn-primary"><i class="fa fa-print"></i>
+                            Cetak
+                            Data</a>
                     </div>
                 @endif
 

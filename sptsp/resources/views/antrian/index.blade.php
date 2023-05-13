@@ -47,6 +47,7 @@
                 $data = [];
                 foreach ($antrians as $antrian) {
                     $btnDetails = '<a href="' . route('antrian.detail', ['id' => $antrian->id]) . '" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details"><i class="fa fa-lg fa-fw fa-eye"></i></a>';
+                    $btnIsiSidang = '<a href="' . route('antrian.isi_sidang', ['id' => $antrian->id]) . '" class="btn btn-xs btn-default text-pink mx-1 shadow" title="Isi Data Sidang"><i class="fa fa-lg fa-fw fa-edit"></i></a>';
                     $terimaBtn = '<a href="' . route('antrian.update_status', ['id' => $antrian->id, 'status' => 1]) . '" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Terima"><i class="fa fa-lg fa-fw fa-check"></i></a>';
                     $callBtn = '<a href="' . route('antrian.update_status', ['id' => $antrian->id, 'status' => 2]) . '" class="btn btn-xs btn-default text-orange mx-1 shadow" title="Panggil"><i class="fa fa-lg fa-fw fa-phone"></i></a>';
                     $masukBtn = '<a href="' . route('antrian.update_status', ['id' => $antrian->id, 'status' => 3]) . '" class="btn btn-xs btn-default text-warning mx-1 shadow" title="Masuk Ruang Sidang"><i class="fa fa-lg fa-fw fa-home"></i></a>';
@@ -56,17 +57,17 @@
                     $status = (int) $antrian->status;
                 
                     if ($status == 0) {
-                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $terimaBtn) . $rejectBtn . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . $btnIsiSidang . ($antrian->ruang_sidang == '-' ? '' : $terimaBtn) . $rejectBtn . '</nobr>';
                     } elseif ($status == 1) {
-                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $callBtn) . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . $btnIsiSidang . ($antrian->ruang_sidang == '-' ? '' : $callBtn) . '</nobr>';
                     } elseif ($status == 2) {
-                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $masukBtn) . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . $btnIsiSidang . ($antrian->ruang_sidang == '-' ? '' : $masukBtn) . '</nobr>';
                     } elseif ($status == 3) {
-                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $selesaiBtn) . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . $btnIsiSidang . ($antrian->ruang_sidang == '-' ? '' : $selesaiBtn) . '</nobr>';
                     } elseif ($status == 4) {
-                        $actions = '<nobr>' . $btnDetails . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . $btnIsiSidang . '</nobr>';
                     } elseif ($status == 5) {
-                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $terimaBtn) . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . $btnIsiSidang . ($antrian->ruang_sidang == '-' ? '' : $terimaBtn) . '</nobr>';
                     }
                 
                     $classStatus = ['primary', 'warning', 'info', 'secondary', 'success', 'danger'];

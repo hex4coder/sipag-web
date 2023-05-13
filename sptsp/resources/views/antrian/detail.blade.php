@@ -134,6 +134,7 @@
                 <div class="row">
                     <a href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 1]) }}"
                         class="btn btn-primary">Terima/Setujui</a>
+                    &nbsp;
                     <a href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 5]) }}"
                         class="btn btn-outline-danger">Lewat</a>
                     &nbsp;
@@ -145,8 +146,11 @@
             {{-- diterima --}}
             @if ($antrian->status == 1)
                 <div class="row">
-                    <a href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 2]) }}"
-                        class="btn btn-primary">Panggil</a>
+                    <a
+                        href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 2]) }}"class="btn btn-primary">Panggil</a>
+                    &nbsp; <a href="{{ route('antrian.isi_sidang', ['id' => $antrian->id]) }}"
+                        class="btn btn-outline-warning">Isi
+                        Data Persidangan</a>
                 </div>
             @endif
 
@@ -155,9 +159,12 @@
                 <div class="row">
                     <a href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 3]) }}"
                         class="btn btn-primary">Masuk Sidang</a>
+                    &nbsp;
                     <a href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 5]) }}"
                         class="btn btn-outline-danger">Lewat</a>
-
+                    &nbsp;
+                    <a href="{{ route('antrian.isi_sidang', ['id' => $antrian->id]) }}" class="btn btn-outline-warning">Isi
+                        Data Persidangan</a>
                 </div>
             @endif
 
@@ -165,8 +172,12 @@
             {{-- sedang sidang --}}
             @if ($antrian->status == 3)
                 <div class="row">
-                    <a href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 4]) }}"
-                        class="btn btn-primary">Selesai Sidang</a>
+                    <a
+                        href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 4]) }}"class="btn btn-primary">Selesai
+                        Sidang</a>
+                    &nbsp; <a href="{{ route('antrian.isi_sidang', ['id' => $antrian->id]) }}"
+                        class="btn btn-outline-warning">Isi
+                        Data Persidangan</a>
                 </div>
             @endif
 
@@ -174,8 +185,12 @@
             {{-- pass lewat --}}
             @if ($antrian->status == 5)
                 <div class="row">
-                    <a href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 1]) }}"
-                        class="btn btn-primary">Panggil Ulang</a>
+                    <a
+                        href="{{ route('antrian.update_status', ['id' => $antrian->id, 'status' => 1]) }}"class="btn btn-primary">Panggil
+                        Ulang</a>
+                    &nbsp; <a href="{{ route('antrian.isi_sidang', ['id' => $antrian->id]) }}"
+                        class="btn btn-outline-warning">Isi
+                        Data Persidangan</a>
                 </div>
             @endif
         </div>
