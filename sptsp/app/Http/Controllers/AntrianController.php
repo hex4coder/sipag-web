@@ -7,43 +7,61 @@ use App\Models\Notification;
 use App\Models\Perkara;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class AntrianController extends Controller
 {
     /**
      * Ambil data antrian
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $antrians = [];
         $all = 'off';
-        if(isset($request->all) ) {
-            if($request->all == 'on') {
+        if (isset($request->all)) {
+            if ($request->all == 'on') {
                 $antrians = Antrian::orderBy('created_at', 'DESC')
-                ->with(['perkara', 'perkara.jenis_perkara'])
-                ->get();
+                    ->with(['perkara', 'perkara.jenis_perkara'])
+                    ->get();
             } else {
                 $antrians = Antrian::whereDate('created_at', Carbon::today())
-                ->with(['perkara'])
-                ->orderBy('created_at', 'DESC')
-                ->get();    
+                    ->with(['perkara'])
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
             }
             $all = $request->all;
         } else {
             $antrians = Antrian::whereDate('created_at', Carbon::today())
-            ->with(['perkara'])
-                        ->orderBy('created_at', 'DESC')
-                        ->get();
+                ->with(['perkara'])
+                ->orderBy('created_at', 'DESC')
+                ->get();
         }
 
         return view('antrian.index', compact('antrians', 'all'));
     }
 
 
+    /**
+     * Fungsi cetak data antrian
+     */
+    public function cetak()
+    {
+        $antrians = Antrian::with(['perkara', 'perkara.saksi'])->orderBy('updated_at', 'desc')->get();
+
+        $tanggal = Carbon::today()->format('d M y');
+        $pdf = PDF::loadview('antrian.cetak', [
+            'antrians' => $antrians,
+            'tanggal' => $tanggal
+        ])->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
 
     /**
      * Memunculkan detail data antrian
      */
-    public function detail($id) {
+    public function detail($id)
+    {
         $antrian = Antrian::with(['perkara', 'perkara.saksi', 'perkara.jenis_perkara'])->find($id);
         return view('antrian.detail', compact('antrian'));
     }
@@ -53,7 +71,8 @@ class AntrianController extends Controller
     /**
      * Isi data sidang
      */
-    public function isi_data_sidang($id) {
+    public function isi_data_sidang($id)
+    {
         $antrian = Antrian::with(['perkara', 'perkara.saksi', 'perkara.jenis_perkara'])->find($id);
         return view('antrian.isi_sidang', compact('antrian'));
     }
@@ -62,15 +81,16 @@ class AntrianController extends Controller
     /**
      * Tempat pengisian data sidang
      */
-    public function post_isi_sidang(Request $request) {
-        
+    public function post_isi_sidang(Request $request)
+    {
+
         $validatedData = $request->validate([
             'sidang_ke' => 'required',
             'agenda' => 'required|min:5',
             'ruang_sidang' => 'required|min:5',
             'km_pp_jsp' => 'required|min:2',
         ]);
-        
+
         // dd($validatedData);
         $antrian = Antrian::findOrFail($request->id);
         $antrian->sidang_ke = $validatedData['sidang_ke'];
@@ -86,15 +106,16 @@ class AntrianController extends Controller
     /**
      * Update status antrian
      */
-    public function update_status($id, $status) {
+    public function update_status($id, $status)
+    {
         $antrian = Antrian::find($id);
-        
-        
+
+
         $status = (int)$status;
         $cs = $antrian->status;
         $cs = (int)$cs;
 
-        if($status == 1) {
+        if ($status == 1) {
             // antrian baru dan diterima
             Notification::create(
                 [
@@ -104,7 +125,7 @@ class AntrianController extends Controller
             );
         }
 
-        if($cs == 1 && $status == 2) {
+        if ($cs == 1 && $status == 2) {
             // antrian dipanggil
             Notification::create(
                 [
@@ -114,7 +135,7 @@ class AntrianController extends Controller
             );
         }
 
-        if($cs == 2 && $status == 3) {
+        if ($cs == 2 && $status == 3) {
             // antrian masuk sidang
             Notification::create(
                 [
@@ -124,12 +145,12 @@ class AntrianController extends Controller
             );
         }
 
-        if($cs == 3 && $status == 4) {
+        if ($cs == 3 && $status == 4) {
             // antrian selesai sidang
             Notification::create(
                 [
                     'perkara_id' => $antrian->perkara_id,
-                    'notif' => 'Sidang anda hari ini telah selesai dengan agenda '.$antrian->agenda.'.'
+                    'notif' => 'Sidang anda hari ini telah selesai dengan agenda ' . $antrian->agenda . '.'
                 ]
             );
 
@@ -139,7 +160,7 @@ class AntrianController extends Controller
             $perkara->save();
         }
 
-        if($status == 5) {
+        if ($status == 5) {
             // antrian lewat
             Notification::create(
                 [
@@ -148,8 +169,8 @@ class AntrianController extends Controller
                 ]
             );
         }
-        
-        $antrian->status= (string)$status;
+
+        $antrian->status = (string)$status;
         $antrian->save();
         return redirect("/antrian");
     }

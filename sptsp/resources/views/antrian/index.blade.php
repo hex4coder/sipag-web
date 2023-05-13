@@ -14,19 +14,28 @@
                     <h3>Daftar Antrian</h3>
                 </div>
                 <div class="col-auto ml-auto">
-                    <form action="{{ route('antrian.index') }}" method="get" class="row">
-                        <div class="form-check">
-                            @if ($all == 'on')
-                                <input type="checkbox" class="form-check-input" id="all" name="all" checked>
-                            @else
-                                <input type="checkbox" class="form-check-input" id="all" name="all">
-                            @endif
-                            <label class="form-check-label" for="all">Semua</label>
-                        </div>
-                        <p style="width: 10px"> </p>
-                        <button type="submit" name="submit" class="btn btn-primary btn-sm">Refresh Data</button>
-                    </form>
+                    <div class="row">
 
+                        <form action="{{ route('antrian.index') }}" method="get" class="row">
+                            <div class="form-check">
+                                @if ($all == 'on')
+                                    <input type="checkbox" class="form-check-input" id="all" name="all" checked>
+                                @else
+                                    <input type="checkbox" class="form-check-input" id="all" name="all">
+                                @endif
+                                <label class="form-check-label" for="all">Semua</label>
+                            </div>
+                            <p style="width: 10px"> </p>
+                            <button type="submit" name="submit" class="btn btn-primary btn-sm">Refresh Data</button>
+                        </form>
+                        &nbsp;
+                        @if (count($antrians) > 0)
+                            <div class="float-right">
+                                <a href="{{ route('antrian.cetak') }}" target="_blank"
+                                    class="btn btn-outline-primary btn-sm"><i class="fa fa-print"></i> Cetak Data</a>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

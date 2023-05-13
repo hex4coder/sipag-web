@@ -9,6 +9,14 @@
     <div class="card">
         <div class="card-header">
             <i class="fa fa-database"></i>
+            <div class="float-right">
+                @if (count($antrians) > 0)
+                    <a target="_blank" href="{{ route('sidang.cetak_done') }}" class="btn btn-primary btn-sm"><i
+                            class="fa fa-print"></i>
+                        Cetak
+                        Data</a>
+                @endif
+            </div>
         </div>
         <div class="card-body">
             {{-- Setup data for datatables --}}
