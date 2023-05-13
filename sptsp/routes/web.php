@@ -33,12 +33,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::group(['middleware' => ['auth', 'cekRole:0']], function() {
+Route::group(['middleware' => ['auth', 'cekRole:0']], function () {
     Route::resource('jenis_perkara', JenisPerkaraController::class);
 });
 
 // Route baru
-Route::group(['middleware' => ['auth', 'cekRole:0,1']], function() {
+Route::group(['middleware' => ['auth', 'cekRole:0,1']], function () {
     Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran');
     Route::get('/perkara/import', [PerkaraController::class, 'form_import'])->name('perkara.import');
     Route::post('/perkara/import', [PerkaraController::class, 'proses_import'])->name('perkara.proses_import');
@@ -49,13 +49,12 @@ Route::group(['middleware' => ['auth', 'cekRole:0,1']], function() {
     Route::get('/prasyarat/tambah', [SyaratController::class, 'tambah'])->name('syarat.tambah');
     Route::post('/prasyarat/store', [SyaratController::class, 'store'])->name('syarat.store');
     Route::post('/prasyarat/update', [SyaratController::class, 'update'])->name('syarat.update');
-    
 });
-Route::group(['middleware' => ['auth', 'cekRole:0,2']], function() {
+Route::group(['middleware' => ['auth', 'cekRole:0,2']], function () {
     Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');
     Route::get('/pengaduan/pegawai', [PengaduanController::class, 'show_data_pegawai'])->name('pengaduan.pegawai');
 });
-Route::group(['middleware' => ['auth', 'cekRole:0,3']], function() {
+Route::group(['middleware' => ['auth', 'cekRole:0,3']], function () {
     Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.index');
     Route::get('/kasir/tambah', [KasirController::class, 'tambah'])->name('kasir.tambah');
     Route::post('/kasir/store', [KasirController::class, 'store'])->name('kasir.store');
@@ -63,7 +62,7 @@ Route::group(['middleware' => ['auth', 'cekRole:0,3']], function() {
     Route::get('/kasir/delete/{id}', [KasirController::class, 'delete'])->name('kasir.delete');
     Route::post('/kasir/update', [KasirController::class, 'update'])->name('kasir.update');
 });
-Route::group(['middleware' => ['auth', 'cekRole:0,4']], function() {
+Route::group(['middleware' => ['auth', 'cekRole:0,4']], function () {
     Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
     Route::get('/produk/tambah', [ProdukController::class, 'tambah'])->name('produk.tambah');
     Route::post('/produk/store', [ProdukController::class, 'store'])->name('produk.store');
@@ -75,7 +74,7 @@ Route::group(['middleware' => ['auth', 'cekRole:0,4']], function() {
 
 
 // Khusus Wenny untuk sistem antrian
-Route::group(['middleware' => ['auth', 'cekRole:0,5']], function() {
+Route::group(['middleware' => ['auth', 'cekRole:0,5']], function () {
     Route::get('/sidang', [SidangController::class, 'index'])->name('sidang.index');
     Route::get('/antrian', [AntrianController::class, 'index'])->name('antrian.index');
     Route::get('/antrian/{id}', [AntrianController::class, 'detail'])->name('antrian.detail');
@@ -83,4 +82,5 @@ Route::group(['middleware' => ['auth', 'cekRole:0,5']], function() {
     Route::post('/antrian/post-sidang', [AntrianController::class, 'post_isi_sidang'])->name('antrian.post_isi_sidang');
     Route::get('/antrian/update-status/{id}/{status}', [AntrianController::class, 'update_status'])->name('antrian.update_status');
     Route::get('/sidang/saksi', [SaksiController::class, 'index'])->name('saksi.index');
+    Route::get('/sidang/saksi/{id}', [SaksiController::class, 'detail'])->name('saksi.detail_saksi');
 });

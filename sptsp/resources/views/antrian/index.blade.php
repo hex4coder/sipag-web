@@ -56,17 +56,17 @@
                     $status = (int) $antrian->status;
                 
                     if ($status == 0) {
-                        $actions = '<nobr>' . $btnDetails . $terimaBtn . $rejectBtn . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $terimaBtn) . $rejectBtn . '</nobr>';
                     } elseif ($status == 1) {
-                        $actions = '<nobr>' . $btnDetails . $callBtn . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $callBtn) . '</nobr>';
                     } elseif ($status == 2) {
-                        $actions = '<nobr>' . $btnDetails . $masukBtn . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $masukBtn) . '</nobr>';
                     } elseif ($status == 3) {
-                        $actions = '<nobr>' . $btnDetails . $selesaiBtn . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $selesaiBtn) . '</nobr>';
                     } elseif ($status == 4) {
                         $actions = '<nobr>' . $btnDetails . '</nobr>';
                     } elseif ($status == 5) {
-                        $actions = '<nobr>' . $btnDetails . $terimaBtn . '</nobr>';
+                        $actions = '<nobr>' . $btnDetails . ($antrian->ruang_sidang == '-' ? '' : $terimaBtn) . '</nobr>';
                     }
                 
                     $classStatus = ['primary', 'warning', 'info', 'secondary', 'success', 'danger'];
@@ -80,7 +80,7 @@
                         '
                             </span>';
                 
-                    $data[] = [$antrian->nomor_antrian . ' (' . $antrian->created_at->diffForHumans() . ')', $antrian->perkara->jenis_perkara->jenis, $antrian->perkara->pihak1, $myStatus, $actions];
+                    $data[] = [$antrian->nomor_antrian . ' diambil ' . $antrian->created_at->diffForHumans() . '<br><br>' . $antrian->perkara->nomor_perkara, $antrian->perkara->jenis_perkara->jenis, $antrian->perkara->pihak1, $myStatus, $actions];
                 }
                 
                 $config = [

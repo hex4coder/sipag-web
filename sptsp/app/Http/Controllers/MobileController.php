@@ -464,4 +464,25 @@ class MobileController extends Controller
             ];
         }
     }
+
+
+
+    /**
+     * Ambil data antrian baru
+     */
+    public function get_data_antrian($antrianid)
+    {
+        $data = Antrian::find($antrianid);
+        if (!$data) {
+            return [
+                'status' => 'error',
+                'message' => 'Tidak ada data yang kami temukan'
+            ];
+        } else {
+            return [
+                'status' => 'success',
+                'data' => $data,
+            ];
+        }
+    }
 }
