@@ -11,6 +11,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SaksiController;
 use App\Http\Controllers\SidangController;
 use App\Http\Controllers\SyaratController;
+use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['auth', 'cekRole:0,1']], function () {
 Route::group(['middleware' => ['auth', 'cekRole:0,2']], function () {
     Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');
     Route::get('/pengaduan/pegawai', [PengaduanController::class, 'show_data_pegawai'])->name('pengaduan.pegawai');
+    Route::get('/pengduan/cetak', [PengaduanController::class, 'cetak'])->name('pengaduan.cetak');
 });
 Route::group(['middleware' => ['auth', 'cekRole:0,3']], function () {
     Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.index');

@@ -21,4 +21,16 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(Pegawai::class);
     }
+
+    public function url_foto_bukti()
+    {
+        $newstr = str_replace("public/", "storage/", $this->bukti);
+        return asset($newstr);
+    }
+
+    public function url_foto_bukti_cetak()
+    {
+        $newstr = str_replace("public/", "storage/", $this->bukti);
+        return $_SERVER['DOCUMENT_ROOT'] . '/' . $newstr;
+    }
 }

@@ -16,7 +16,8 @@
                 {{-- jika ada data tampilkan tombol print --}}
                 @if (count($listaduan) > 0)
                     <div class="float-right">
-                        <a target="_blank" href="{{ route('saksi.cetak') }}" class="btn btn-primary"><i class="fa fa-print"></i>
+                        <a target="_blank" href="{{ route('pengaduan.cetak') }}" class="btn btn-primary"><i
+                                class="fa fa-print"></i>
                             Cetak
                             Data</a>
                     </div>
@@ -42,7 +43,11 @@
                                     <td>{{ $aduan->pegawai->nama }}</td>
                                     <td>{{ $aduan->isi }}</td>
                                     <td>{{ $aduan->created_at }}</td>
-                                    <td>{{ $aduan->bukti }}</td>
+                                    <td>
+                                        <a href="{{ $aduan->url_foto_bukti() }}" target="_blank"
+                                            rel="noopener noreferrer"><img src="{{ $aduan->url_foto_bukti() }}"
+                                                alt="{{ $aduan->url_foto_bukti() }}" height="100px"></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

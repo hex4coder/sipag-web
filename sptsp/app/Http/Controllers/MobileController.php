@@ -8,6 +8,7 @@ use App\Models\JenisPerkara;
 use App\Models\Notification;
 use App\Models\Pegawai;
 use App\Models\Pembayaran;
+use App\Models\Pengaduan;
 use App\Models\Perkara;
 use App\Models\Prasyarat;
 use App\Models\Saksi;
@@ -46,18 +47,20 @@ class MobileController extends Controller
         $bukti = $request->file('bukti');
         $extensiFile = $bukti->getClientOriginalExtension();
         $namaBuktiFile = time() . '.' . $extensiFile;
-
         $filebukti = $bukti->storeAs('public/bukti_pengaduan', $namaBuktiFile);
 
-
-        $p = Pegawai::create(
-            [
-                'isi' => $isi,
-                'bukti' => $filebukti,
-                'pegawai_id' => $pegawai_id,
-            ]
-        );
-
+        $cp = Pengaduan::where("isi", $isi)->where("bukti", $filebukti)->where("pegawai_id", $pegawai_id)->get();
+        if ($cp) {
+            $p = true;
+        } else {
+            $p = Pengaduan::create(
+                [
+                    'isi' => $isi,
+                    'bukti' => $filebukti,
+                    'pegawai_id' => $pegawai_id,
+                ]
+            );
+        }
         if ($p) {
             return [
                 'status' => 'success',
