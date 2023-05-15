@@ -52,15 +52,14 @@ class MobileController extends Controller
         $cp = Pengaduan::where("isi", $isi)->where("bukti", $filebukti)->where("pegawai_id", $pegawai_id)->get();
         if ($cp) {
             $p = true;
-        } else {
-            $p = Pengaduan::create(
-                [
-                    'isi' => $isi,
-                    'bukti' => $filebukti,
-                    'pegawai_id' => $pegawai_id,
-                ]
-            );
         }
+        $p = Pengaduan::create(
+            [
+                'isi' => $isi,
+                'bukti' => $filebukti,
+                'pegawai_id' => $pegawai_id,
+            ]
+        );
         if ($p) {
             return [
                 'status' => 'success',
